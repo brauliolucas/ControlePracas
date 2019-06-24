@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ControlePracas.Models.Praca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<nav class="navbar navbar-background">
+    <a class="navbar-brand">Configurações Midia</a>
+    <div class="float-right">
+        <button class="btn create"><i class="glyphicon glyphicon-plus"></i></button>
+    </div>
+    </nav>
+<div>
+    <h2 class="float-left">Praças</h2>
+    <span class="float-right">@Model.Count() Registros</span>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sigla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UF)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sigla)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UF)
+            </td>
+            <td>
+                <button class="btn btn-primary edit button-hidden" data-id="@item.ID"><i class="glyphicon glyphicon-edit"></i></button>
+                <button class="btn btn-danger delete button-hidden" data-id="@item.ID" ><i class="glyphicon glyphicon-trash"></i></button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="modal" class="modal fade" role="dialog"></div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".edit").click(function () {
+                var id = $(this).attr("data-id");
+
+                $("#modal").load("Praca/Edit?id=" + id, function () {
+                    $("#modal").modal();
+                })
+            });
+
+            $(".delete").click(function () {
+                var id = $(this).attr("data-id");
+                $("#modal").load("Praca/Delete?id=" + id, function () {
+                    $("#modal").modal();
+                })
+            });
+
+            $(".create").click(function () {
+                $("#modal").load("Praca/Create", function () {
+                    $("#modal").modal();
+                })
+            });
+
+        })
+    </script>
+}

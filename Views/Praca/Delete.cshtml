@@ -1,0 +1,62 @@
+﻿@model ControlePracas.Models.Praca
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Excluir</h2>
+
+<div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Deseja deletar esta praça ?</h4>
+                </div>
+                <div class="modal-body">
+                <h4>Praca</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Nome)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sigla)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Sigla)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UF)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UF)
+                    </dd>
+
+                </dl>
+                </div>
+                <div class="modal-footer">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-success" />
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                }
+            </div>
+            </div><!--modalcontent-->
+        </div><!--modaldialog-->
+
+</div>
